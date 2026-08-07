@@ -111,6 +111,17 @@ p {
   clip-path: inset(50% round 9999px);
 }
 
+/* Same contract as .hero-pending, for the about page's above-the-fold intro:
+   the start state ships in the server-rendered HTML so GSAP never has to snap
+   a painted layout backwards. AboutIntro strips the class once it takes over. */
+.about-pending [data-about-fade] {
+  opacity: 0;
+}
+
+.about-pending [data-about-plate] {
+  clip-path: inset(0 0 100% 0);
+}
+
 /* Repeat visits in the same session skip the intro. Set before first paint by
    the inline script in layout.tsx so the overlay never flashes. */
 .intro-seen [data-site-intro] {

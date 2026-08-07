@@ -16,7 +16,7 @@ export function Navbar() {
           />
           {/* Full name wraps past one line on narrow screens, so it forks
               short below sm rather than truncating mid-name. */}
-          <span className="truncate sm:hidden">Brian Musanga</span>
+          <span className="truncate sm:hidden">Brian Munyasia</span>
           <span className="hidden truncate sm:inline">{personal.name}</span>
         </Link>
 
@@ -28,8 +28,7 @@ export function Navbar() {
             rel="noopener noreferrer"
             className="btn-cta whitespace-nowrap"
           >
-            <span className="sm:hidden">Talk</span>
-            <span className="hidden sm:inline">Talk to me</span>
+            Talk to me
           </a>
         </div>
       </nav>

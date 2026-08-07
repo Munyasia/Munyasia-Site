@@ -232,17 +232,54 @@ export const projects: Project[] = [
 export const skills: SkillGroup[] = [
   {
     category: "Frontend",
-    items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML5/CSS"],
+    items: [
+      "React",
+      "Next.js",
+      "Vue",
+      "TypeScript",
+      "Tailwind CSS",
+      "HTML5/CSS",
+    ],
   },
   {
     category: "Backend & Data",
     items: [
       "REST API Design",
+      "Next.js Route Handlers",
+      "Database Schema Design",
       "PostgreSQL",
+      "SQL",
       "Prisma",
       "Firestore",
+      "Data Modeling",
+      "Serverless Functions & Cron Jobs",
+      "Third-Party API Integration",
+      "Cloudinary Media Pipeline",
       "Python",
+      "Django",
       "Java",
+    ],
+  },
+  /* Security is the differentiator, so it stands on its own rather than
+     sharing a row with Git and Vercel, and every entry names a specific
+     control or discipline. Vague lines like "Cybersecurity Fundamentals"
+     read as a course title to a recruiter scanning for keywords. */
+  {
+    category: "Security",
+    items: [
+      "OAuth 2.0 & Auth.js",
+      "JWT Sessions & Account Lockout",
+      "HMAC-SHA512 Webhook Verification",
+      "Role-Based Access Control",
+      "Data Minimization by Design",
+      "Data Protection Act 2019",
+      "SOC/NOC Tier 1",
+      "Threat Intelligence (CTI)",
+      "Log Analysis & IOC Identification",
+      "Malware Detection",
+      "Blue Team Exercises",
+      "Vulnerability Identification",
+      "Linux & Networking Fundamentals",
     ],
   },
   {
@@ -250,26 +287,94 @@ export const skills: SkillGroup[] = [
     items: ["Gemini", "Claude", "LangChain", "Prompt Engineering", "AI Pipelines"],
   },
   {
-    category: "Security & Ops",
+    category: "Platform & Payments",
     items: [
-      "Auth.js/OAuth",
-      "Cybersecurity Fundamentals",
-      "SOC Tier 1",
-      "CTI",
       "Git",
       "Vercel",
       "Neon",
-      "Paystack/Mpesa",
+      "Environment & Deployment Config",
+      "Paystack",
+      "M-Pesa Daraja",
     ],
   },
 ];
 
+export type AboutRecord = { label: string; value: string };
+
+export type Job = {
+  period: string;
+  role: string;
+  org: string;
+  detail: string;
+};
+
+/* Reverse chronological. TryHackMe sits on the CV under work experience but
+   is training, not a job, so it stays in the background prose instead of
+   padding this list. */
+export const experience: Job[] = [
+  {
+    period: "Apr 2026",
+    role: "Technical Support & Data Operations Assistant",
+    org: "IEBC, voter registration exercise",
+    detail:
+      "Kept KIEMS biometric kits running through the registration exercise, fixing hardware and software faults on the spot. Handled voter data under the Data Protection Act 2019 and trained the clerks who used the system.",
+  },
+  {
+    period: "Jun to Aug 2024",
+    role: "ICT Attachment Trainee",
+    org: "Narok County Government, Dept. of ICT and E-Government",
+    detail:
+      "Installed and configured hardware and operating systems, and cleared the network and system faults that were keeping staff from working.",
+  },
+  {
+    period: "May to Aug 2023",
+    role: "Customer Service Assistant",
+    org: "Supermarket counter",
+    detail:
+      "High volume transactions and the complaints that came with them. This is where I learned to stay calm with someone who is already annoyed.",
+  },
+  {
+    period: "2022 to 2023",
+    role: "Graphic Designer, Photo and Video Editor",
+    org: "Freelance",
+    detail:
+      "Social media graphics and video campaigns in Photoshop and Premiere Pro. Audience interaction rose about 40% for one client, and event turnout about 25% for a non-profit.",
+  },
+];
+
+/* Written first person. The rest of the site speaks as Brian, and this is the
+   page where third-person CV voice would read as someone else's summary. */
 export const about = {
+  statement:
+    "I build software that people actually rely on. Then, I do my absolute best to break it into pieces before anyone else can.",
+  statementEmphasis: "break it into pieces",
+  intro:
+    "I work with business owners who need something that sells, and with teams who need someone to own a feature end to end.",
+  portrait: {
+    src: "https://res.cloudinary.com/dmvb8o8z2/image/upload/v1786135065/brian-headshot_z1gp8s.jpg",
+    alt: "Brian Munyasia Musanga",
+  },
+  record: [
+    { label: "Based in", value: "Nairobi, Kenya" },
+    {
+      label: "Studied",
+      value: "BSc Computer Science, Maasai Mara University",
+    },
+    {
+      label: "Certified",
+      value: "Cybersecurity Bootcamp, Moringa School",
+    },
+    {
+      label: "In progress",
+      value: "CCNA at Kabarak University, ISC2 candidate",
+    },
+    { label: "Available", value: "Client work and full-time roles" },
+  ] satisfies AboutRecord[],
   paragraphs: [
-    "Computer Science graduate from Maasai Mara University who ships full-stack apps end to end, from database schema to deployed UI.",
-    "Integrates LLMs into real products with a focus on prompt engineering and data minimization, not novelty AI features.",
-    "Builds with a secure-by-design mindset, shaped by TryHackMe, CyberDefenders blue team exercises, ISC2 candidacy, and the Moringa bootcamp.",
-    "Brings leadership experience through GDSC and leading a student tech work group.",
+    "Computer Science at Maasai Mara University, then straight into shipping. I take work from an empty schema to a deployed UI without handing it off halfway.",
+    "I put language models into products where they earn their place. What I send them matters more than which one I picked, so I spend the time on the filtering and the prompts rather than shopping for a bigger model.",
+    "The security habit came from TryHackMe, CyberDefenders blue team exercises, an ISC2 candidacy and the Moringa bootcamp, where the work was log analysis, malware detection and picking indicators of compromise out of noise. It means I build assuming someone will try the front door.",
+    "I led a student tech work group and ran sessions with GDSC, which is where I learned to explain a system to people who did not build it.",
   ],
 };
 
