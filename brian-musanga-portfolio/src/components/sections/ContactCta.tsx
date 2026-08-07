@@ -1,16 +1,18 @@
 import Link from "next/link";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { EmphasisText } from "@/components/ui/EmphasisText";
+import { AnimatedEllipsis } from "@/components/ui/AnimatedEllipsis";
 import { home, personal } from "@/lib/data/site-content";
 
-export function ContactCta() {
+export function ContactCta({ index = "02" }: { index?: string }) {
   return (
     <section className="mx-auto w-full max-w-5xl px-6 py-24 sm:py-32">
-      <SectionLabel index="03">Contact</SectionLabel>
+      <SectionLabel index={index}>Contact</SectionLabel>
 
       <div className="mt-12 flex flex-col gap-6">
         <h2 className="max-w-3xl font-display text-h1 leading-none tracking-tight text-foreground">
           <EmphasisText text={home.ctaHeading} emphasis={home.ctaEmphasis} />
+          <AnimatedEllipsis className="text-accent" />
         </h2>
         <p className="max-w-[55ch] text-body text-muted-foreground">
           {home.ctaBody}

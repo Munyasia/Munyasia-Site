@@ -33,8 +33,12 @@ export type SkillGroup = {
 
 export type Pillar = {
   index: string;
+  /* One word for the sticky index and the panel eyebrow. */
+  short: string;
   title: string;
   body: string;
+  /* Concrete things shipped under this pillar, pulled from real projects. */
+  proof: string[];
 };
 
 export type Home = {
@@ -42,6 +46,8 @@ export type Home = {
   heroEmphasis: string;
   heroSubline: string;
   scrollHint: string;
+  pillarsHeading: string;
+  pillarsBody: string;
   pillars: Pillar[];
   ctaHeading: string;
   ctaEmphasis: string;
@@ -172,7 +178,7 @@ export const projects: Project[] = [
     year: "2026",
     stack: ["Next.js 15", "React 19", "Tailwind v4", "Motion", "nuqs"],
     description:
-      "Travel and safari platform front end designed to showcase destinations and convert browsing into inquiries.",
+      "Travel and safari platform front end built to put destinations in front of people and turn browsing into inquiries.",
     outcome:
       "A safari brand's browsing experience rebuilt to turn visitors into inquiries.",
     highlights: [
@@ -193,7 +199,7 @@ export const projects: Project[] = [
     year: "2026",
     stack: ["Next.js 15", "React 19", "Tailwind v4", "Motion", "nuqs"],
     description:
-      "Portfolio site for the Maahir Graphics design business, built as a responsive, motion-enhanced showcase of client work.",
+      "Portfolio site for the Maahir Graphics design business, built so their client work has somewhere worth sending people.",
     outcome:
       "A design studio's client work given a portfolio worth linking to.",
     highlights: [
@@ -267,6 +273,13 @@ export const about = {
   ],
 };
 
+export const work = {
+  heading: "Selected work",
+  intro:
+    "Client builds that had to earn their keep, and independent projects where I wanted to understand something well enough to ship it.",
+  yearRange: "2024 to 2026",
+};
+
 export const home: Home = {
   heroHeading: [
     "I help businesses launch secure web apps and AI tools that actually get customers.",
@@ -274,25 +287,47 @@ export const home: Home = {
   heroEmphasis: "get customers",
   heroSubline: "Let's take your product from an idea to shipped code.",
   scrollHint: "Scroll",
+  pillarsHeading: "What I get hired to build",
+  pillarsBody:
+    "Most of what comes my way falls into one of these. Everything listed here is running in something I have already shipped.",
   pillars: [
     {
       index: "A",
+      short: "Revenue",
       title: "Ship products that generate revenue",
       body: "E-commerce, payments and SEO engineered so customers find you and buy. From catalog to checkout to the payment webhook, built to convert and built to be found.",
+      proof: [
+        "Paystack checkout",
+        "Catalog to fulfillment pipeline",
+        "Dynamic sitemap and JSON-LD",
+      ],
     },
     {
       index: "B",
-      title: "Automate with AI, without burning money",
-      body: "AI that pays for itself: pipelines designed for cost-awareness, sending only what matters to the model. Automation that saves hours of manual work, with strict data minimization by default.",
+      short: "Automation",
+      title: "Automate what wastes your time",
+      body: "Some jobs are worth handing to a machine, plenty aren't, and I'll say which is which before we build anything. When AI is the right tool I keep it on a short leash: filter the work first, then send it only what it needs. Heavy workloads cost real money, and you'll hear that from me, not from the invoice.",
+      proof: [
+        "Only 1 to 3 of 50 emails reach the model",
+        "Sender, subject and a snippet, nothing more",
+        "OCR into a searchable library",
+      ],
     },
     {
       index: "C",
+      short: "Security",
       title: "Security from day one",
       body: "Authentication, verified payments, protected data. Systems built by someone trained in how attackers think, so problems are prevented instead of patched.",
+      proof: [
+        "OAuth with JWT sessions",
+        "HMAC-verified webhooks",
+        "Account lockout and role gates",
+      ],
     },
   ],
-  ctaHeading: "Have a problem worth solving?",
-  ctaEmphasis: "solving",
+  /* No trailing period: ContactCta renders an animated ellipsis in its place. */
+  ctaHeading: "Tell me what your business needs",
+  ctaEmphasis: "business needs",
   ctaBody:
-    "I design, build and secure web products end to end. Tell me what is slowing your business down.",
+    "I design, build and secure web products end to end. Start with whatever is slowing you down and I will work out the rest.",
 };
