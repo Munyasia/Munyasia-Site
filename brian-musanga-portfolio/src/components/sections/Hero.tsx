@@ -1,77 +1,113 @@
+"use client";
+
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { AmbientVideo } from "@/components/ui/AmbientVideo";
 import { EmphasisText } from "@/components/ui/EmphasisText";
-import { home, personal } from "@/lib/data/site-content";
-
-const rise = "motion-safe:animate-[hero-rise_0.8s_cubic-bezier(0.16,1,0.3,1)_both]";
+import { useHeroTimeline } from "@/hooks/useHeroTimeline";
+import { backgroundVideo, home, personal } from "@/lib/data/site-content";
 
 export function Hero() {
-  return (
-    <section className="flex flex-col lg:min-h-screen">
-      <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-6">
-        <div className="flex items-baseline justify-between gap-4 pt-8">
-          <span className="font-mono text-sm tracking-tight text-foreground sm:text-base lg:text-lg">
-            {personal.name}
-          </span>
-          <span className="label">{personal.location}</span>
-        </div>
-        <div className="border-t border-border" />
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const portraitRef = useRef<HTMLDivElement | null>(null);
+  const captionRef = useRef<HTMLParagraphElement | null>(null);
+  const headlineRef = useRef<HTMLHeadingElement | null>(null);
+  const sublineRef = useRef<HTMLParagraphElement | null>(null);
+  const ctaRef = useRef<HTMLDivElement | null>(null);
+  const gridRef = useRef<HTMLDivElement | null>(null);
 
-        <div className="flex flex-1 flex-col gap-12 py-12 lg:flex-row lg:items-center lg:gap-14 lg:py-20 xl:mr-[calc(34rem_-_50vw)]">
-          <div className="flex flex-col items-center lg:shrink-0 lg:items-start xl:ml-[calc(34rem_-_50vw)]">
+  useHeroTimeline({
+    section: sectionRef,
+    portrait: portraitRef,
+    caption: captionRef,
+    headline: headlineRef,
+    subline: sublineRef,
+    cta: ctaRef,
+    grid: gridRef,
+  });
+
+  return (
+    <section
+      ref={sectionRef}
+      className="relative isolate -mt-[var(--nav-h)] flex flex-col overflow-hidden pt-[var(--nav-h)] lg:min-h-screen"
+    >
+      <AmbientVideo
+        src={backgroundVideo.hero}
+        graded={false}
+        className="absolute inset-0 -z-10"
+      />
+
+      <div
+        ref={gridRef}
+        className="grid-lines pointer-events-none absolute inset-0"
+        aria-hidden="true"
+      />
+
+      <div className="relative mx-auto flex w-full max-w-5xl flex-1 flex-col px-6">
+        <div className="flex flex-1 flex-col items-center justify-center gap-6 py-16 text-center lg:py-24">
+          <div className="relative mx-auto flex flex-col items-center">
             <div
-              className={`relative aspect-square w-full max-w-sm overflow-hidden rounded-full border border-border lg:w-96 lg:max-w-none ${rise}`}
+              aria-hidden="true"
+              className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/25 blur-[100px] sm:h-80 sm:w-80 lg:h-96 lg:w-96"
+            />
+
+            <h1
+              ref={headlineRef}
+              className="relative z-0 select-none font-display uppercase leading-[0.8] tracking-tighter text-[clamp(3.5rem,15vw,13.125rem)]"
+            >
+              <span className="block text-foreground">Brian</span>
+              <span className="block text-accent">Musanga</span>
+            </h1>
+
+            <div
+              ref={portraitRef}
+              className="absolute left-1/2 top-1/2 z-10 w-[65px] h-[110px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border border-border sm:w-[90px] sm:h-[152px] md:w-[110px] md:h-[185px] lg:w-[129px] lg:h-[218px]"
             >
               <Image
                 src={personal.photoUrl}
                 alt={personal.name}
                 fill
-                sizes="(min-width: 1024px) 384px, 100vw"
-                className="object-cover grayscale"
+                sizes="129px"
+                className="object-cover"
+                style={{ filter: "url(#hero-duotone)" }}
                 priority
               />
             </div>
-            <p
-              className={`label mt-4 text-center lg:text-left ${rise}`}
-              style={{ animationDelay: "100ms" }}
-            >
-              {personal.role}
-            </p>
           </div>
 
-          <div className="flex flex-1 flex-col">
-            <h1
-              className={`font-display text-display text-foreground ${rise}`}
-              style={{ animationDelay: "160ms" }}
-            >
+          <p ref={captionRef} className="label">
+            {personal.role}
+          </p>
+
+          <div ref={sublineRef} className="flex flex-col items-center gap-3">
+            <p className="font-display text-display max-w-[42ch] text-foreground">
               <EmphasisText
                 text={home.heroHeading.join(" ")}
                 emphasis={home.heroEmphasis}
               />
-            </h1>
-            <p
-              className={`mt-5 max-w-[55ch] text-body text-muted-foreground lg:mt-6 ${rise}`}
-              style={{ animationDelay: "280ms" }}
-            >
+            </p>
+            <p className="max-w-[55ch] text-body text-muted-foreground">
               {home.heroSubline}
             </p>
-            <div
-              className={`mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 lg:mt-14 ${rise}`}
-              style={{ animationDelay: "380ms" }}
+          </div>
+
+          <div
+            ref={ctaRef}
+            className="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-4"
+          >
+            <Link href="/work" className="btn-invert">
+              View work
+            </Link>
+            <Link
+              href="/contact"
+              className="link-invert inline-flex items-center gap-1.5 text-foreground"
             >
-              <Link href="/work" className="btn-invert">
-                View work
-              </Link>
-              <Link
-                href="/contact"
-                className="link-invert inline-flex items-center gap-1.5 text-foreground"
-              >
-                Let&rsquo;s talk
-                <span className="font-sans" aria-hidden="true">
-                  ↗
-                </span>
-              </Link>
-            </div>
+              Let&rsquo;s talk
+              <span className="font-sans" aria-hidden="true">
+                ↗
+              </span>
+            </Link>
           </div>
         </div>
 

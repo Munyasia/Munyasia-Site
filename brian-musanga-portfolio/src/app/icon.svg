@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Brian Musanga logo">
+  <rect width="512" height="512" rx="112" fill="#0a0e14" />
+  <g fill="none" stroke="#fefaef" stroke-width="52" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M180 100L180 412" />
+    <path d="M180 100A78 78 0 0 1 180 256" />
+    <path d="M180 256A78 78 0 0 1 180 412" />
+  </g>
+  <g fill="none" stroke="#fefaef" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" opacity="0.55">
+    <path d="M246 284L246 384" />
+    <path d="M330 284L330 384" />
+    <path d="M246 284L288 334L330 284" />
+  </g>
+</svg>

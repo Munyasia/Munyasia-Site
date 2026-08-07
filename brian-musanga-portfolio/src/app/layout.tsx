@@ -1,16 +1,18 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda, JetBrains_Mono } from "next/font/google";
+import { Fira_Code, JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
+import { AmbientVideo } from "@/components/ui/AmbientVideo";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
 import { Navbar } from "@/components/layout/Navbar";
+import { MenuFab } from "@/components/layout/MenuFab";
 import { Footer } from "@/components/layout/Footer";
+import { backgroundVideo } from "@/lib/data/site-content";
 import "./globals.css";
 
-const bodoniModa = Bodoni_Moda({
+const firaCode = Fira_Code({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "900"],
-  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const generalSans = localFont({
@@ -53,13 +55,36 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bodoniModa.variable} ${generalSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${firaCode.variable} ${generalSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <svg width="0" height="0" aria-hidden="true" className="absolute">
+          <defs>
+            <filter id="hero-duotone" colorInterpolationFilters="sRGB">
+              <feColorMatrix
+                type="matrix"
+                values="0.2126 0.7152 0.0722 0 0
+                        0.2126 0.7152 0.0722 0 0
+                        0.2126 0.7152 0.0722 0 0
+                        0       0      0      1 0"
+              />
+              <feComponentTransfer>
+                <feFuncR type="table" tableValues="0.039 0.996" />
+                <feFuncG type="table" tableValues="0.055 0.980" />
+                <feFuncB type="table" tableValues="0.078 0.937" />
+              </feComponentTransfer>
+            </filter>
+          </defs>
+        </svg>
+        <AmbientVideo
+          src={backgroundVideo.site}
+          className="fixed inset-0 -z-10"
+        />
         <SmoothScrollProvider>
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main className="flex-1 pt-[var(--nav-h)]">{children}</main>
           <Footer />
+          <MenuFab />
         </SmoothScrollProvider>
       </body>
     </html>

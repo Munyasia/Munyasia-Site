@@ -17,7 +17,7 @@ export function EmphasisText({
   return (
     <>
       {before}
-      <em className="italic text-accent">{emphasis}</em>
+      <em className="not-italic text-accent">{emphasis}</em>
       {after}
     </>
   );

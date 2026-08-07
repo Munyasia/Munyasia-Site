@@ -40,6 +40,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# local hero photo pipeline (raw personal photo + intermediate renders)
+/hero-pipeline/
+name-image-details.txt
+*.stackdump
+
 # AI tooling (never commit references to how this was built)
 CLAUDE.md
 .claude/

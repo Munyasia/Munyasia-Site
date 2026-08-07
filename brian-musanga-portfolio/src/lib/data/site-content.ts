@@ -6,6 +6,7 @@ export type Personal = {
   email: string;
   github: string;
   linkedin: string;
+  whatsapp: string;
   photoUrl: string;
 };
 
@@ -49,14 +50,27 @@ export type Home = {
 
 export const personal: Personal = {
   name: "Brian Munyasia Musanga",
-  role: "Full-Stack & AI Developer",
+  role: "Full-Stack & Cybersecurity Analyst",
   headline:
     "I build production web apps and embed AI into real products, with a security-first mindset.",
   location: "Nairobi, Kenya",
   email: "brianmuse624@gmail.com",
   github: "https://github.com/Munyasia",
   linkedin: "https://www.linkedin.com/in/brian-munyasia-bm5777",
-  photoUrl: "/photo-placeholder.jpg",
+  whatsapp: "https://wa.me/254719358135",
+  photoUrl: "/hero-photo.jpg",
+};
+
+export const navLinks = [
+  { index: "01", href: "/", label: "Home" },
+  { index: "02", href: "/about", label: "About" },
+  { index: "03", href: "/work", label: "Work" },
+  { index: "04", href: "/contact", label: "Contact" },
+];
+
+export const backgroundVideo = {
+  hero: "https://res.cloudinary.com/dmvb8o8z2/video/upload/f_auto,q_auto/v1781510952/bg_c8giyo.mp4",
+  site: "https://res.cloudinary.com/dmvb8o8z2/video/upload/f_auto,q_auto/v1781518297/bg-1_k2mbbu.mp4",
 };
 
 export const projects: Project[] = [
