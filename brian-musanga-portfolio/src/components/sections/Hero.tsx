@@ -46,11 +46,13 @@ export function Hero() {
       />
 
       <div className="relative mx-auto flex w-full max-w-5xl flex-1 flex-col px-6">
-        <div className="flex flex-1 flex-col items-start justify-center gap-6 pt-8 pb-12 text-left lg:items-center lg:py-24 lg:text-center">
+        <div className="flex flex-1 flex-col items-start justify-center gap-6 pt-8 pb-12 text-left min-[426px]:items-center min-[426px]:text-center lg:py-24">
           {/* Below lg the portrait is taller than the two-line name, so it sits
               beside it in flow. From lg the name outgrows it and the pill can
-              go back through the middle. */}
-          <div className="relative flex w-full items-center gap-5 sm:gap-7 lg:mx-auto lg:block lg:w-auto">
+              go back through the middle. Above 425px the row shrinks to its
+              content so the parent's centering can take hold; at 425px and
+              below it stays full-width and left-aligned. */}
+          <div className="relative flex w-full items-center gap-5 sm:gap-7 min-[426px]:w-auto lg:mx-auto lg:block lg:w-auto">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/25 blur-[100px] sm:h-80 sm:w-80 lg:h-96 lg:w-96"
@@ -95,7 +97,7 @@ export function Hero() {
           <div
             ref={sublineRef}
             data-hero-fade
-            className="flex flex-col items-start gap-3 lg:items-center"
+            className="flex flex-col items-start gap-3 min-[426px]:items-center"
           >
             <p className="font-display text-display max-w-[42ch] text-foreground">
               <EmphasisText
@@ -111,7 +113,7 @@ export function Hero() {
           <div
             ref={ctaRef}
             data-hero-fade-children
-            className="mt-4 flex flex-wrap items-center justify-start gap-x-8 gap-y-4 lg:justify-center"
+            className="mt-4 flex flex-wrap items-center justify-start gap-x-8 gap-y-4 min-[426px]:justify-center"
           >
             <Link href="/work" className="btn-invert">
               View portfolio
