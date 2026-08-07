@@ -1,6 +1,7 @@
 import { EnvelopeSimple } from "@phosphor-icons/react/dist/ssr";
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { personal } from "@/lib/data/site-content";
+import { LogoMark } from "@/components/ui/LogoMark";
 
 const iconLinks = [
   {
@@ -23,11 +24,17 @@ export function Footer() {
   return (
     <footer className="border-t border-border">
       <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-8 sm:flex-row sm:items-center sm:justify-between">
-        <ul className="label flex flex-wrap items-center gap-x-6 gap-y-2">
-          <li>{personal.location}</li>
-          <li>{personal.email}</li>
-          <li>&copy; {year} {personal.name}</li>
-        </ul>
+        <div className="flex items-center gap-4">
+          <LogoMark
+            decorative
+            className="h-8 w-auto shrink-0 text-foreground/80"
+          />
+          <ul className="label flex flex-wrap items-center gap-x-6 gap-y-2">
+            <li>{personal.location}</li>
+            <li>{personal.email}</li>
+            <li>&copy; {year} {personal.name}</li>
+          </ul>
+        </div>
 
         <ul className="flex items-center gap-4">
           {iconLinks.map((link) => (

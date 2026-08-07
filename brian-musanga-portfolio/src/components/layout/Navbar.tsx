@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { personal } from "@/lib/data/site-content";
+import { LogoMark } from "@/components/ui/LogoMark";
 
 export function Navbar() {
   return (
@@ -7,8 +8,12 @@ export function Navbar() {
       <nav className="mx-auto flex h-[var(--nav-h)] max-w-5xl items-center justify-between gap-4 px-6">
         <Link
           href="/"
-          className="font-mono text-sm tracking-tight text-foreground sm:text-base"
+          className="group flex items-center gap-2.5 font-mono text-sm tracking-tight text-foreground sm:gap-3 sm:text-base"
         >
+          <LogoMark
+            decorative
+            className="h-6 w-auto shrink-0 text-foreground transition-colors duration-150 ease-out group-hover:text-accent sm:h-7"
+          />
           {personal.name}
         </Link>
 

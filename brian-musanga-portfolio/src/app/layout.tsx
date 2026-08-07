@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fira_Code, JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { AmbientVideo } from "@/components/ui/AmbientVideo";
@@ -6,7 +6,7 @@ import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvide
 import { Navbar } from "@/components/layout/Navbar";
 import { MenuFab } from "@/components/layout/MenuFab";
 import { Footer } from "@/components/layout/Footer";
-import { backgroundVideo } from "@/lib/data/site-content";
+import { backgroundVideo, personal } from "@/lib/data/site-content";
 import "./globals.css";
 
 const firaCode = Fira_Code({
@@ -42,9 +42,39 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
+/* OG tags need absolute URLs. Vercel injects VERCEL_PROJECT_PRODUCTION_URL on
+   every deploy, so previews and production resolve without a hardcoded domain.
+   Set NEXT_PUBLIC_SITE_URL (with protocol) once a custom domain is attached. */
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : "http://localhost:3000");
+
 export const metadata: Metadata = {
-  title: "Brian Musanga",
-  description: "Portfolio of Brian Musanga.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: personal.name,
+    template: `%s · ${personal.name}`,
+  },
+  description: personal.headline,
+  openGraph: {
+    type: "website",
+    siteName: personal.name,
+    title: personal.name,
+    description: personal.headline,
+    url: "/",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: personal.name,
+    description: personal.headline,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0a0e14",
 };
 
 export default function RootLayout({

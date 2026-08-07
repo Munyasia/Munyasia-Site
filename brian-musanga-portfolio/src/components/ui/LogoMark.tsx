@@ -1,9 +1,21 @@
-export function LogoMark({ className }: { className?: string }) {
+/* `decorative` drops the label when the mark sits beside the name in text —
+   otherwise screen readers announce "Brian Musanga" twice. */
+export function LogoMark({
+  className,
+  decorative = false,
+}: {
+  className?: string;
+  decorative?: boolean;
+}) {
   return (
     <svg
-      viewBox="0 0 512 512"
-      role="img"
-      aria-label="Brian Musanga logo"
+      /* Cropped to the stroke bounds rather than the 512 square the app icon
+         uses — inline beside text, the square's empty right half opened a gap
+         and shrank the glyph. Size callers by height; width follows. */
+      viewBox="154 74 187 364"
+      role={decorative ? undefined : "img"}
+      aria-hidden={decorative || undefined}
+      aria-label={decorative ? undefined : "Brian Musanga logo"}
       className={className}
     >
       <g
