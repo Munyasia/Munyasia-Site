@@ -15,10 +15,12 @@ const SCRIM = {
 
 export function AmbientVideo({
   src,
+  poster,
   className = "",
   graded = true,
 }: {
   src: string;
+  poster?: string;
   className?: string;
   graded?: boolean;
 }) {
@@ -36,6 +38,7 @@ export function AmbientVideo({
         loop
         playsInline
         preload="metadata"
+        poster={poster}
         className="h-full w-full object-cover"
         style={
           graded

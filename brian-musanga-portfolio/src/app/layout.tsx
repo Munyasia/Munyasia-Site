@@ -2,7 +2,12 @@ import type { Metadata, Viewport } from "next";
 import { Fira_Code, JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { AmbientVideo } from "@/components/ui/AmbientVideo";
+import { SiteIntro } from "@/components/ui/SiteIntro";
 import { SmoothScrollProvider } from "@/components/providers/SmoothScrollProvider";
+import {
+  INTRO_SEEN_KEY,
+  IntroProvider,
+} from "@/components/providers/IntroProvider";
 import { Navbar } from "@/components/layout/Navbar";
 import { MenuFab } from "@/components/layout/MenuFab";
 import { Footer } from "@/components/layout/Footer";
@@ -77,6 +82,13 @@ export const viewport: Viewport = {
   themeColor: "#0a0e14",
 };
 
+/* Runs synchronously before the overlay below is parsed, so a repeat visitor
+   never sees a frame of intro before hydration removes it. Same trick as the
+   classic theme-flash guard. */
+const introGuard = `try{if(sessionStorage.getItem(${JSON.stringify(
+  INTRO_SEEN_KEY,
+)})||matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("intro-seen")}}catch(e){}`;
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -88,6 +100,7 @@ export default function RootLayout({
       className={`${firaCode.variable} ${generalSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <script dangerouslySetInnerHTML={{ __html: introGuard }} />
         <svg width="0" height="0" aria-hidden="true" className="absolute">
           <defs>
             <filter id="hero-duotone" colorInterpolationFilters="sRGB">
@@ -108,14 +121,18 @@ export default function RootLayout({
         </svg>
         <AmbientVideo
           src={backgroundVideo.site}
+          poster={backgroundVideo.sitePoster}
           className="fixed inset-0 -z-10"
         />
-        <SmoothScrollProvider>
-          <Navbar />
-          <main className="flex-1 pt-[var(--nav-h)]">{children}</main>
-          <Footer />
-          <MenuFab />
-        </SmoothScrollProvider>
+        <IntroProvider>
+          <SiteIntro />
+          <SmoothScrollProvider>
+            <Navbar />
+            <main className="flex-1 pt-[var(--nav-h)]">{children}</main>
+            <Footer />
+            <MenuFab />
+          </SmoothScrollProvider>
+        </IntroProvider>
       </body>
     </html>
   );

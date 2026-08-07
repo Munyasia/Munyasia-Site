@@ -68,9 +68,17 @@ export const navLinks = [
   { index: "04", href: "/contact", label: "Contact" },
 ];
 
+/* Transforms are width-capped: uncapped f_auto,q_auto was shipping the full
+   master, which left the background blank until it arrived. Posters are frame
+   0 of the same asset (so_0 + .jpg), so they always match the footage. The
+   site copy runs smaller because it sits under a duotone filter and a scrim. */
 export const backgroundVideo = {
-  hero: "https://res.cloudinary.com/dmvb8o8z2/video/upload/f_auto,q_auto/v1781510952/bg_c8giyo.mp4",
-  site: "https://res.cloudinary.com/dmvb8o8z2/video/upload/f_auto,q_auto/v1781518297/bg-1_k2mbbu.mp4",
+  hero: "https://res.cloudinary.com/dmvb8o8z2/video/upload/f_auto,q_auto,w_1920,c_limit/v1781510952/bg_c8giyo.mp4",
+  heroPoster:
+    "https://res.cloudinary.com/dmvb8o8z2/video/upload/so_0,f_auto,q_auto,w_1920,c_limit/v1781510952/bg_c8giyo.jpg",
+  site: "https://res.cloudinary.com/dmvb8o8z2/video/upload/f_auto,q_auto,w_1280,c_limit/v1781518297/bg-1_k2mbbu.mp4",
+  sitePoster:
+    "https://res.cloudinary.com/dmvb8o8z2/video/upload/so_0,f_auto,q_auto,w_1280,c_limit/v1781518297/bg-1_k2mbbu.jpg",
 };
 
 export const projects: Project[] = [

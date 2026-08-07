@@ -30,10 +30,11 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative isolate -mt-[var(--nav-h)] flex flex-col overflow-hidden pt-[var(--nav-h)] lg:min-h-screen"
+      className="hero-pending relative isolate -mt-[var(--nav-h)] flex flex-col overflow-hidden pt-[var(--nav-h)] lg:min-h-screen"
     >
       <AmbientVideo
         src={backgroundVideo.hero}
+        poster={backgroundVideo.heroPoster}
         graded={false}
         className="absolute inset-0 -z-10"
       />
@@ -54,6 +55,7 @@ export function Hero() {
 
             <h1
               ref={headlineRef}
+              data-hero-fade
               className="relative z-0 select-none font-display uppercase leading-[0.8] tracking-tighter text-[clamp(3.5rem,15vw,13.125rem)]"
             >
               <span className="block text-foreground">Brian</span>
@@ -62,6 +64,7 @@ export function Hero() {
 
             <div
               ref={portraitRef}
+              data-hero-portrait
               className="absolute left-1/2 top-1/2 z-10 w-[65px] h-[110px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border border-border sm:w-[90px] sm:h-[152px] md:w-[110px] md:h-[185px] lg:w-[129px] lg:h-[218px]"
             >
               <Image
@@ -76,11 +79,15 @@ export function Hero() {
             </div>
           </div>
 
-          <p ref={captionRef} className="label">
+          <p ref={captionRef} data-hero-fade className="label">
             {personal.role}
           </p>
 
-          <div ref={sublineRef} className="flex flex-col items-center gap-3">
+          <div
+            ref={sublineRef}
+            data-hero-fade
+            className="flex flex-col items-center gap-3"
+          >
             <p className="font-display text-display max-w-[42ch] text-foreground">
               <EmphasisText
                 text={home.heroHeading.join(" ")}
@@ -94,6 +101,7 @@ export function Hero() {
 
           <div
             ref={ctaRef}
+            data-hero-fade-children
             className="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-4"
           >
             <Link href="/work" className="btn-invert">
