@@ -92,9 +92,14 @@ export function MenuFab() {
   );
 
   return (
+    /* The closed panel keeps its layout box (visibility, not display), so this
+       container is a ~340x370px invisible rect pinned bottom-right at z-50.
+       Without pointer-events-none it hit-tests over all of that and swallows
+       clicks on whatever sits under it, which is the footer at page bottom.
+       The panel and button opt back in. */
     <div
       ref={containerRef}
-      className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4"
+      className="pointer-events-none fixed bottom-6 right-6 z-50 flex flex-col items-end gap-4"
     >
       <nav
         id="fab-menu"
@@ -106,7 +111,7 @@ export function MenuFab() {
            and the gsap.set below only runs once JS boots, so without these the
            panel flashes on every load. GSAP's autoAlpha writes the same two
            properties inline from then on. */
-        className="invisible w-[min(84vw,340px)] origin-bottom-right rounded-[3px] border border-border bg-background/95 opacity-0 backdrop-blur-sm"
+        className="pointer-events-auto invisible w-[min(84vw,340px)] origin-bottom-right rounded-[3px] border border-border bg-background/95 opacity-0 backdrop-blur-sm"
       >
         <p className="label border-b border-border px-6 py-4">Menu</p>
         <ul className="flex flex-col py-2">
@@ -148,7 +153,7 @@ export function MenuFab() {
         aria-expanded={open}
         aria-controls="fab-menu"
         aria-label={open ? "Close menu" : "Open menu"}
-        className="inline-flex h-16 w-16 items-center justify-center rounded-[3px] border border-accent bg-background text-foreground transition-colors duration-150 ease-out hover:bg-accent hover:text-background"
+        className="pointer-events-auto inline-flex h-16 w-16 items-center justify-center rounded-[3px] border border-accent bg-background text-foreground transition-colors duration-150 ease-out hover:bg-accent hover:text-background"
       >
         {/* Three bars GSAP folds into an X, rather than swapping icons, so the
             open and close states are one continuous motion. */}

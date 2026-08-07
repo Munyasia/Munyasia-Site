@@ -118,33 +118,6 @@ export const projects: Project[] = [
     liveUrl: "https://lirasoninvestments.vercel.app",
   },
   {
-    slug: "jadi",
-    title: "Jadi",
-    type: "Independent Project",
-    year: "2024-2025",
-    stack: [
-      "Next.js",
-      "Tailwind",
-      "Python OCR",
-      "Google Gemini",
-      "LangChain",
-      "Firestore",
-      "PostgreSQL",
-    ],
-    description:
-      "AI platform that categorizes academic documents automatically, turning unsorted PDFs and DOCX files into a searchable, organized library.",
-    outcome:
-      "Cut document sorting time by ~90%, putting learning material one search away for students.",
-    highlights: [
-      "OCR ingestion of PDF and DOCX files",
-      "Automated categorization and semantic search via Gemini and LangChain",
-      "Cut manual sorting time by roughly 90 percent",
-    ],
-    featured: false,
-    image: "/projects/jadi.jpg",
-    liveUrl: null,
-  },
-  {
     slug: "heardback",
     title: "HeardBack",
     type: "Independent Project",
@@ -227,6 +200,33 @@ export const projects: Project[] = [
     image: "/projects/panama.jpg",
     liveUrl: "https://panamageneralagencies.com",
   },
+  {
+    slug: "jadi",
+    title: "Jadi",
+    type: "Independent Project",
+    year: "2024-2025",
+    stack: [
+      "Next.js",
+      "Tailwind",
+      "Python OCR",
+      "Google Gemini",
+      "LangChain",
+      "Firestore",
+      "PostgreSQL",
+    ],
+    description:
+      "AI platform that categorizes academic documents automatically, turning unsorted PDFs and DOCX files into a searchable, organized library.",
+    outcome:
+      "Cut document sorting time by ~90%, putting learning material one search away for students.",
+    highlights: [
+      "OCR ingestion of PDF and DOCX files",
+      "Automated categorization and semantic search via Gemini and LangChain",
+      "Cut manual sorting time by roughly 90 percent",
+    ],
+    featured: false,
+    image: "/projects/jadi.jpg",
+    liveUrl: null,
+  },
 ];
 
 export const skills: SkillGroup[] = [
@@ -277,7 +277,6 @@ export const work = {
   heading: "Portfolio",
   intro:
     "Client builds that had to earn their keep, and independent projects where I wanted to understand something well enough to ship it.",
-  yearRange: "2024 to 2026",
 };
 
 export const home: Home = {

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { EmphasisText } from "@/components/ui/EmphasisText";
 import { AnimatedEllipsis } from "@/components/ui/AnimatedEllipsis";
@@ -19,9 +18,14 @@ export function ContactCta({ index = "02" }: { index?: string }) {
         </p>
 
         <div className="flex flex-wrap items-center gap-6 pt-4">
-          <Link href="/contact" className="btn-invert">
+          <a
+            href={personal.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-cta"
+          >
             Let&rsquo;s talk
-          </Link>
+          </a>
           <a href={`mailto:${personal.email}`} className="link-invert label">
             {personal.email}
           </a>

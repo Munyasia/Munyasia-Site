@@ -27,8 +27,6 @@ export default function Work() {
         <p className="mt-6 max-w-[55ch] text-body text-muted-foreground">
           {work.intro}
         </p>
-
-        <p className="label mt-8">{work.yearRange}</p>
       </header>
 
       <section

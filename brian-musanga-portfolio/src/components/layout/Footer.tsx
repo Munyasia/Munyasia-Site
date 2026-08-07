@@ -23,7 +23,10 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border">
-      <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-8 sm:flex-row sm:items-center sm:justify-between">
+      {/* Stacked on mobile, the icon row lands under the fixed menu button
+          (bottom-6 right-6, 64px) unless cleared, which made LinkedIn
+          untappable. Row layout at sm+ doesn't overlap it, so pb relaxes. */}
+      <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 pt-8 pb-28 sm:flex-row sm:items-center sm:justify-between sm:pb-8">
         <div className="flex items-center gap-4">
           <LogoMark
             decorative
