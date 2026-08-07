@@ -46,8 +46,11 @@ export function Hero() {
       />
 
       <div className="relative mx-auto flex w-full max-w-5xl flex-1 flex-col px-6">
-        <div className="flex flex-1 flex-col items-center justify-center gap-6 py-16 text-center lg:py-24">
-          <div className="relative mx-auto flex flex-col items-center">
+        <div className="flex flex-1 flex-col items-start justify-center gap-6 pt-8 pb-12 text-left lg:items-center lg:py-24 lg:text-center">
+          {/* Below lg the portrait is taller than the two-line name, so it sits
+              beside it in flow. From lg the name outgrows it and the pill can
+              go back through the middle. */}
+          <div className="relative flex w-full items-center gap-5 sm:gap-7 lg:mx-auto lg:block lg:w-auto">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent/25 blur-[100px] sm:h-80 sm:w-80 lg:h-96 lg:w-96"
@@ -56,26 +59,32 @@ export function Hero() {
             <h1
               ref={headlineRef}
               data-hero-fade
-              className="relative z-0 select-none font-display uppercase leading-[0.8] tracking-tighter text-[clamp(3.5rem,15vw,13.125rem)]"
+              className="relative z-0 select-none font-display uppercase leading-[0.8] tracking-tighter text-[clamp(2.5rem,13vw,13.125rem)] lg:text-[clamp(3.5rem,15vw,13.125rem)]"
             >
               <span className="block text-foreground">Brian</span>
               <span className="block text-accent">Musanga</span>
             </h1>
 
-            <div
-              ref={portraitRef}
-              data-hero-portrait
-              className="absolute left-1/2 top-1/2 z-10 w-[65px] h-[110px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border border-border sm:w-[90px] sm:h-[152px] md:w-[110px] md:h-[185px] lg:w-[129px] lg:h-[218px]"
-            >
-              <Image
-                src={personal.photoUrl}
-                alt={personal.name}
-                fill
-                sizes="129px"
-                className="object-cover"
-                style={{ filter: "url(#hero-duotone)" }}
-                priority
-              />
+            {/* order-first puts the pill left of the name without moving the
+                h1 down the DOM. The centering lives on this slot, not on the
+                animated pill, so GSAP's inline transform never has a translate
+                to fight with. */}
+            <div className="order-first shrink-0 -translate-y-2 sm:-translate-y-3 lg:pointer-events-none lg:absolute lg:inset-0 lg:z-10 lg:grid lg:translate-x-0 lg:translate-y-0 lg:place-items-center">
+              <div
+                ref={portraitRef}
+                data-hero-portrait
+                className="relative w-[65px] h-[110px] overflow-hidden rounded-full border border-border sm:w-[90px] sm:h-[152px] md:w-[110px] md:h-[185px] lg:w-[129px] lg:h-[218px]"
+              >
+                <Image
+                  src={personal.photoUrl}
+                  alt={personal.name}
+                  fill
+                  sizes="(min-width: 1024px) 129px, (min-width: 768px) 110px, (min-width: 640px) 90px, 65px"
+                  className="object-cover"
+                  style={{ filter: "url(#hero-duotone)" }}
+                  priority
+                />
+              </div>
             </div>
           </div>
 
@@ -86,7 +95,7 @@ export function Hero() {
           <div
             ref={sublineRef}
             data-hero-fade
-            className="flex flex-col items-center gap-3"
+            className="flex flex-col items-start gap-3 lg:items-center"
           >
             <p className="font-display text-display max-w-[42ch] text-foreground">
               <EmphasisText
@@ -102,7 +111,7 @@ export function Hero() {
           <div
             ref={ctaRef}
             data-hero-fade-children
-            className="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-4"
+            className="mt-4 flex flex-wrap items-center justify-start gap-x-8 gap-y-4 lg:justify-center"
           >
             <Link href="/work" className="btn-invert">
               View portfolio

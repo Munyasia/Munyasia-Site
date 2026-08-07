@@ -86,21 +86,25 @@ export function SkillsLedger() {
                   {group.category}
                 </span>
               </dt>
+              {/* Flex-wrapped, not inline text: the separators carry no
+                  whitespace, so as inline content the whole run was one
+                  unbreakable word and overflowed the viewport on mobile. Each
+                  dot trails its own item so a wrapped line never opens on one. */}
               <dd
                 data-ledger-entry
-                className="font-mono text-sm leading-relaxed text-foreground sm:col-span-9"
+                className="flex flex-wrap items-baseline gap-x-2 gap-y-1 font-mono text-sm leading-relaxed text-foreground sm:col-span-9"
               >
                 {group.items.map((item, i) => (
                   <span key={item}>
-                    {i > 0 && (
+                    {item}
+                    {i < group.items.length - 1 && (
                       <span
                         aria-hidden="true"
-                        className="px-2 text-muted-foreground"
+                        className="pl-2 text-muted-foreground"
                       >
                         ·
                       </span>
                     )}
-                    {item}
                   </span>
                 ))}
               </dd>
