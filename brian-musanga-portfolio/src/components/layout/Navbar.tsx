@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { personal } from "@/lib/data/site-content";
 import { LogoMark } from "@/components/ui/LogoMark";
+import { NairobiClock } from "@/components/layout/NairobiClock";
 
 export function Navbar() {
   return (
@@ -21,7 +22,12 @@ export function Navbar() {
         </Link>
 
         <div className="flex shrink-0 items-center gap-4 sm:gap-6">
-          <span className="label hidden md:inline">{personal.location}</span>
+          {/* Clock sits left of the location so the two read as one unit:
+              the time, then the place it belongs to. */}
+          <div className="hidden items-center gap-2 md:flex">
+            <NairobiClock />
+            <span className="label">{personal.location}</span>
+          </div>
           <a
             href={personal.whatsapp}
             target="_blank"

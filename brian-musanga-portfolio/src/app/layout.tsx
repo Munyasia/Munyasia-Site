@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fira_Code, JetBrains_Mono } from "next/font/google";
+import { Allura, Fira_Code, JetBrains_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import { AmbientVideo } from "@/components/ui/AmbientVideo";
 import { SiteIntro } from "@/components/ui/SiteIntro";
@@ -39,6 +39,14 @@ const generalSans = localFont({
       style: "normal",
     },
   ],
+});
+
+/* Loaded site-wide because the variable lives on <html>, but only the contact
+   signature ever paints it. One weight, one word. */
+const allura = Allura({
+  variable: "--font-script",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -97,7 +105,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${firaCode.variable} ${generalSans.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${firaCode.variable} ${generalSans.variable} ${jetbrainsMono.variable} ${allura.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <script dangerouslySetInnerHTML={{ __html: introGuard }} />

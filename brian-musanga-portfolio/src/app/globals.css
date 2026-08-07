@@ -29,6 +29,18 @@
   --text-display--letter-spacing: -0.01em;
   --text-display--font-weight: 400;
 
+  /* Contact only. Fira Code is monospace, so a line's width is exactly
+     (chars x 0.58em) once the negative tracking is applied. Sized against the
+     longest heading line, currently "Let's work" at 10 characters, plus the
+     18% indent the second line carries. The cap sits well under what would
+     fit (168px) on purpose: a monospace runs about 40% wider per character
+     than the serif this layout came from, so matching that reference on width
+     would overshoot it badly on weight. Longer copy needs a lower cap. */
+  --text-mega: clamp(2.25rem, 9vw, 6.5rem);
+  --text-mega--line-height: 0.95;
+  --text-mega--letter-spacing: -0.02em;
+  --text-mega--font-weight: 400;
+
   --text-h1: clamp(2.5rem, 6vw, 5.5rem);
   --text-h1--line-height: 1;
   --text-h1--letter-spacing: -0.01em;
@@ -68,6 +80,13 @@ body {
 
 .font-display {
   font-family: var(--font-display);
+}
+
+/* Fourth role, deliberately narrow: the contact signature and nothing else.
+   It carries one word, so the subset stays tiny and it never competes with
+   the display/body/label split the rest of the site runs on. */
+.font-script {
+  font-family: var(--font-script);
 }
 
 h1,
@@ -120,6 +139,23 @@ p {
 
 .about-pending [data-about-plate] {
   clip-path: inset(0 0 100% 0);
+}
+
+/* Same contract as .hero-pending and .about-pending, for the contact intro.
+   ContactIntro strips the class before it writes its own inline styles. */
+.contact-pending [data-contact-eyebrow],
+.contact-pending [data-contact-tail] {
+  opacity: 0;
+}
+
+/* Matches the yPercent: 110 the timeline sets, so the server-rendered frame
+   and GSAP's first frame are the same position. */
+.contact-pending [data-contact-line] {
+  transform: translateY(110%);
+}
+
+.contact-pending [data-contact-sign] {
+  clip-path: inset(0 100% 0 0);
 }
 
 /* Repeat visits in the same session skip the intro. Set before first paint by
@@ -216,6 +252,43 @@ p {
 .btn-cta:hover {
   background: transparent;
   color: var(--foreground);
+}
+
+/* Brand-colored contact chips. --brand is set per link, so one rule covers
+   four different logos. The hover tint is mixed from that same value rather
+   than inverting to a floral-white fill the way .btn-invert does, because a
+   white GitHub mark on a white ground would vanish. */
+.social-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-family: var(--font-jetbrains-mono);
+  font-size: var(--text-label);
+  letter-spacing: var(--text-label--letter-spacing);
+  text-transform: uppercase;
+  color: var(--foreground);
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease;
+}
+
+.social-cta:hover {
+  border-color: var(--brand);
+  background: color-mix(in oklab, var(--brand) 14%, transparent);
+}
+
+/* WhatsApp carries the primary action, so it starts already tinted instead of
+   waiting for a hover a touch device never sends. */
+.social-cta[data-primary] {
+  border-color: var(--brand);
+  background: color-mix(in oklab, var(--brand) 12%, transparent);
+}
+
+.social-cta[data-primary]:hover {
+  background: color-mix(in oklab, var(--brand) 24%, transparent);
 }
 
 ::selection {

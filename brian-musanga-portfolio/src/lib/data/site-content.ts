@@ -378,6 +378,63 @@ export const about = {
   ],
 };
 
+export type ContactRow = {
+  label: string;
+  value: string;
+  /* Absent means the value is a fact, not somewhere to go. */
+  href?: string;
+};
+
+export type ContactGroup = { title: string; rows: ContactRow[] };
+
+export type Contact = {
+  headingLines: string[];
+  signature: string;
+  subline: string;
+  groups: ContactGroup[];
+};
+
+/* Heading ships in sentence case and is uppercased in CSS, so a screen reader
+   and a copy-paste both get "Let's work together" rather than shouting.
+   Split into two lines by hand because the mask reveal animates one element
+   per line, and letting the browser choose the break would desync them.
+   Line two is the shorter of the pair: the layout indents it, so a longer
+   second line would push past the container. Check --text-mega if this
+   copy changes. */
+export const contact: Contact = {
+  headingLines: ["Let's work", "together"],
+  /* The one word set in the script face, sitting under the heading in accent
+     gold so the page opens with a hand-written note rather than a form. */
+  signature: "Contact",
+  subline:
+    "Or what's already broken. Either one is a good place to start.",
+  groups: [
+    {
+      title: "Direct",
+      rows: [
+        {
+          label: "Email",
+          value: personal.email,
+          href: `mailto:${personal.email}`,
+        },
+        {
+          label: "WhatsApp",
+          value: "+254 719 358 135",
+          href: personal.whatsapp,
+        },
+      ],
+    },
+    {
+      title: "Availability",
+      rows: [
+        { label: "Based in", value: "Nairobi, Kenya (UTC+3)" },
+        { label: "Hours", value: "Monday to Saturday, 9:00 to 18:00" },
+        { label: "Open to", value: "Client work and full-time roles" },
+      ],
+    },
+  ],
+};
+
 export const work = {
   heading: "Portfolio",
   intro:
