@@ -6,7 +6,7 @@ import { ContactCta } from "@/components/sections/ContactCta";
 import { projects, work } from "@/lib/data/site-content";
 
 export const metadata: Metadata = {
-  title: "Work",
+  title: "Portfolio",
   description: work.intro,
 };
 
@@ -18,7 +18,7 @@ export default function Work() {
   return (
     <>
       <header className="mx-auto w-full max-w-5xl px-6 pt-16 pb-4 sm:pt-24">
-        <SectionLabel index="Work">{total} projects</SectionLabel>
+        <SectionLabel index="Portfolio">{total} projects</SectionLabel>
 
         <h1 className="mt-8 max-w-[14ch] font-display text-h1 leading-none tracking-tight text-foreground">
           {work.heading}

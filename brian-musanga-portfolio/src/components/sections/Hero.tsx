@@ -105,7 +105,7 @@ export function Hero() {
             className="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-4"
           >
             <Link href="/work" className="btn-invert">
-              View work
+              View portfolio
             </Link>
             <Link
               href="/contact"

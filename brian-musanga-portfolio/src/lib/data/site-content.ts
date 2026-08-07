@@ -70,7 +70,7 @@ export const personal: Personal = {
 export const navLinks = [
   { index: "01", href: "/", label: "Home" },
   { index: "02", href: "/about", label: "About" },
-  { index: "03", href: "/work", label: "Work" },
+  { index: "03", href: "/work", label: "Portfolio" },
   { index: "04", href: "/contact", label: "Contact" },
 ];
 
@@ -140,7 +140,7 @@ export const projects: Project[] = [
       "Automated categorization and semantic search via Gemini and LangChain",
       "Cut manual sorting time by roughly 90 percent",
     ],
-    featured: true,
+    featured: false,
     image: "/projects/jadi.jpg",
     liveUrl: null,
   },
@@ -188,7 +188,7 @@ export const projects: Project[] = [
       "Testimonial widgets",
       "Type-safe URL filter state with nuqs",
     ],
-    featured: false,
+    featured: true,
     image: "/projects/beliways.jpg",
     liveUrl: "https://beliwaysadventures.vercel.app",
   },
@@ -274,7 +274,7 @@ export const about = {
 };
 
 export const work = {
-  heading: "Selected work",
+  heading: "Portfolio",
   intro:
     "Client builds that had to earn their keep, and independent projects where I wanted to understand something well enough to ship it.",
   yearRange: "2024 to 2026",
