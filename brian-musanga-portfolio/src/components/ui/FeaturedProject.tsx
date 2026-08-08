@@ -4,9 +4,13 @@ import type { Project } from "@/lib/data/site-content";
 export function FeaturedProject({
   project,
   reverse = false,
+  priority = false,
 }: {
   project: Project;
   reverse?: boolean;
+  /* The first row sits above the fold and is the page's LCP element, so it
+     opts out of lazy loading. The rest stay lazy. */
+  priority?: boolean;
 }) {
   const { title, type, year, description, outcome, stack, image, liveUrl } =
     project;
@@ -24,6 +28,7 @@ export function FeaturedProject({
           fill
           sizes="(min-width: 1024px) 58vw, 100vw"
           className="object-cover"
+          priority={priority}
         />
       </div>
 
