@@ -413,6 +413,16 @@ export const contact: Contact = {
   ],
 };
 
+export const studio = {
+  name: "Pxum Studio",
+  role: "Founder",
+  logo: "/pxum-studio.png",
+  heading: "Client work goes out under Pxum Studio",
+  body: "Pxum Studio is the name I build under when the work is for a business. I founded it and I run it. Every client project in this portfolio was delivered through it.",
+  aside:
+    "The independent projects are mine alone. That is the difference between something I built to understand it and something a business now runs on.",
+};
+
 export type FaqItem = { question: string; answer: string };
 
 export const faq: FaqItem[] = [

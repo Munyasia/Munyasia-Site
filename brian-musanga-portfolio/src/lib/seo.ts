@@ -7,6 +7,7 @@ import {
   personal,
   projects,
   skills,
+  studio,
   work,
 } from "@/lib/data/site-content";
 
@@ -22,6 +23,7 @@ export function absoluteUrl(pathname: string) {
 
 const PERSON_ID = `${siteUrl}/#person`;
 const WEBSITE_ID = `${siteUrl}/#website`;
+const STUDIO_ID = `${siteUrl}/#studio`;
 
 const alumniOf = {
   "@type": "CollegeOrUniversity",
@@ -55,6 +57,24 @@ export const personSchema = {
       "@type": "City",
       name: "Nairobi",
     },
+  },
+  worksFor: { "@id": STUDIO_ID },
+};
+
+export const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": STUDIO_ID,
+  name: studio.name,
+  description: studio.body,
+  url: absoluteUrl("/about"),
+  logo: absoluteUrl(studio.logo),
+  image: absoluteUrl(studio.logo),
+  founder: { "@id": PERSON_ID },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Nairobi",
+    addressCountry: "KE",
   },
 };
 
@@ -121,7 +141,10 @@ export const workCollectionSchema = {
         image: absoluteUrl(project.image),
         dateCreated: project.year,
         keywords: project.stack.join(", "),
-        creator: { "@id": PERSON_ID },
+        creator: {
+          "@id":
+            project.type === "Client Project" ? STUDIO_ID : PERSON_ID,
+        },
         ...(project.liveUrl ? { url: project.liveUrl } : {}),
       },
     })),
@@ -160,6 +183,12 @@ export function buildLlmsTxt() {
     `> ${personal.headline} Based in ${personal.location}.`,
     "",
     about.statement,
+    "",
+    "## Studio",
+    "",
+    `${studio.name}, founded by ${personal.name}. ${studio.body}`,
+    "",
+    studio.aside,
     "",
     "## Pages",
     "",

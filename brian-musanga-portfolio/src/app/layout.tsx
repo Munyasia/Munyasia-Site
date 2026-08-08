@@ -13,7 +13,12 @@ import { MenuFab } from "@/components/layout/MenuFab";
 import { Footer } from "@/components/layout/Footer";
 import { backgroundVideo, personal } from "@/lib/data/site-content";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { personSchema, siteUrl, websiteSchema } from "@/lib/seo";
+import {
+  organizationSchema,
+  personSchema,
+  siteUrl,
+  websiteSchema,
+} from "@/lib/seo";
 import "./globals.css";
 
 const firaCode = Fira_Code({
@@ -122,6 +127,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">
         <script dangerouslySetInnerHTML={{ __html: introGuard }} />
         <JsonLd data={personSchema} />
+        <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
         <svg width="0" height="0" aria-hidden="true" className="absolute">
           <defs>

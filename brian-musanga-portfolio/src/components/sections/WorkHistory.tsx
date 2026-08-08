@@ -60,7 +60,7 @@ export function WorkHistory() {
     >
       <div className="mx-auto w-full max-w-5xl px-6 py-20 sm:py-24 lg:grid lg:grid-cols-12 lg:gap-x-12">
         <div className="lg:col-span-3">
-          <SectionLabel index="02">
+          <SectionLabel index="03">
             <span id="about-experience">Experience</span>
           </SectionLabel>
         </div>

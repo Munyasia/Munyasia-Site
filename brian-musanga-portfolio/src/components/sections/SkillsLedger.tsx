@@ -61,7 +61,7 @@ export function SkillsLedger() {
       className="border-t border-border"
     >
       <div className="mx-auto w-full max-w-5xl px-6 py-20 sm:py-24">
-        <SectionLabel index="03">
+        <SectionLabel index="04">
           <span id="about-toolkit">Toolkit</span>
         </SectionLabel>
 

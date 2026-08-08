@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { AboutIntro } from "@/components/sections/AboutIntro";
 import { AboutStory } from "@/components/sections/AboutStory";
+import { StudioNote } from "@/components/sections/StudioNote";
 import { WorkHistory } from "@/components/sections/WorkHistory";
 import { SkillsLedger } from "@/components/sections/SkillsLedger";
 import { ContactCta } from "@/components/sections/ContactCta";
@@ -27,9 +28,10 @@ export default function About() {
       <JsonLd data={breadcrumbSchema("About", "/about")} />
       <AboutIntro />
       <AboutStory />
+      <StudioNote />
       <WorkHistory />
       <SkillsLedger />
-      <ContactCta index="04" />
+      <ContactCta index="05" />
     </>
   );
 }
