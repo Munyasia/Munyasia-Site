@@ -30,7 +30,6 @@ export function WorkHistory() {
           },
         });
 
-        /* The spine runs down first, then each entry lands on it. */
         tl.to("[data-spine]", {
           scaleY: 1,
           duration: 0.9,
@@ -68,8 +67,6 @@ export function WorkHistory() {
 
         <div className="mt-10 lg:col-span-8 lg:col-start-5 lg:mt-0">
           <ol className="relative">
-            {/* The spine is its own element rather than a border, so it can be
-                drawn on. 1px hairline, not a colored side stripe. */}
             <span
               data-spine
               aria-hidden="true"
@@ -78,8 +75,6 @@ export function WorkHistory() {
 
             {experience.map((job) => (
               <li key={`${job.org}-${job.role}`} data-job className="relative pl-8 pb-12 last:pb-0">
-                {/* Square node, matching SectionLabel's marker. Circles are
-                    reserved for the hero portrait. */}
                 <span
                   aria-hidden="true"
                   className="absolute left-0 top-[0.3rem] h-1.5 w-1.5 -translate-x-1/2 bg-foreground"

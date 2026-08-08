@@ -8,8 +8,6 @@
   --border: rgba(175, 210, 250, 0.35);
   --accent: #e8a55c;
 
-  /* Navbar overlays the page rather than sitting in flow, so its height is a
-     token: `main` reserves it, the hero cancels it to run full-bleed. */
   --nav-h: 4.5rem;
 }
 
@@ -29,13 +27,6 @@
   --text-display--letter-spacing: -0.01em;
   --text-display--font-weight: 400;
 
-  /* Contact only. Fira Code is monospace, so a line's width is exactly
-     (chars x 0.58em) once the negative tracking is applied. Sized against the
-     longest heading line, currently "Let's work" at 10 characters, plus the
-     18% indent the second line carries. The cap sits well under what would
-     fit (168px) on purpose: a monospace runs about 40% wider per character
-     than the serif this layout came from, so matching that reference on width
-     would overshoot it badly on weight. Longer copy needs a lower cap. */
   --text-mega: clamp(2.25rem, 9vw, 6.5rem);
   --text-mega--line-height: 0.95;
   --text-mega--letter-spacing: -0.02em;
@@ -82,9 +73,6 @@ body {
   font-family: var(--font-display);
 }
 
-/* Fourth role, deliberately narrow: the contact signature and nothing else.
-   It carries one word, so the subset stays tiny and it never competes with
-   the display/body/label split the rest of the site runs on. */
 .font-script {
   font-family: var(--font-script);
 }
@@ -112,16 +100,14 @@ p {
   max-width: 65ch;
 }
 
-/* The hero's entrance start state lives here rather than in a gsap .from(),
-   so it ships in the server-rendered HTML. Otherwise the browser paints the
-   finished hero, then GSAP snaps it back on hydration and you see the flash.
-   useHeroTimeline strips .hero-pending once it owns the inline styles. */
+/* Entrance start states live in CSS, not in a gsap .from(), so they ship with
+   the server HTML. Otherwise the browser paints the finished layout and GSAP
+   yanks it back on hydration, which you see as a flash. Each timeline drops
+   its own *-pending class once it owns the inline styles. */
 .hero-pending [data-hero-fade] {
   opacity: 0;
 }
 
-/* The CTA row staggers its children, so they carry the start state, not the
-   wrapper — hiding the wrapper would keep it at 0 while the children lit up. */
 .hero-pending [data-hero-fade-children] > * {
   opacity: 0;
 }
@@ -130,9 +116,6 @@ p {
   clip-path: inset(50% round 9999px);
 }
 
-/* Same contract as .hero-pending, for the about page's above-the-fold intro:
-   the start state ships in the server-rendered HTML so GSAP never has to snap
-   a painted layout backwards. AboutIntro strips the class once it takes over. */
 .about-pending [data-about-fade] {
   opacity: 0;
 }
@@ -141,15 +124,11 @@ p {
   clip-path: inset(0 0 100% 0);
 }
 
-/* Same contract as .hero-pending and .about-pending, for the contact intro.
-   ContactIntro strips the class before it writes its own inline styles. */
 .contact-pending [data-contact-eyebrow],
 .contact-pending [data-contact-tail] {
   opacity: 0;
 }
 
-/* Matches the yPercent: 110 the timeline sets, so the server-rendered frame
-   and GSAP's first frame are the same position. */
 .contact-pending [data-contact-line] {
   transform: translateY(110%);
 }
@@ -158,14 +137,10 @@ p {
   clip-path: inset(0 100% 0 0);
 }
 
-/* Repeat visits in the same session skip the intro. Set before first paint by
-   the inline script in layout.tsx so the overlay never flashes. */
 .intro-seen [data-site-intro] {
   display: none;
 }
 
-/* One-shot rule wipe under the 404 code. CSS rather than GSAP so the page
-   stays a server component apart from the scrambling digits. */
 @keyframes rule-in {
   from {
     transform: scaleX(0);
@@ -229,8 +204,6 @@ p {
   color: var(--background);
 }
 
-/* Filled, not outline: this is the one CTA that stays on screen everywhere
-   (navbar), so it reads as the primary action rather than another link. */
 .btn-cta {
   display: inline-flex;
   align-items: center;
@@ -254,10 +227,6 @@ p {
   color: var(--foreground);
 }
 
-/* Brand-colored contact chips. --brand is set per link, so one rule covers
-   four different logos. The hover tint is mixed from that same value rather
-   than inverting to a floral-white fill the way .btn-invert does, because a
-   white GitHub mark on a white ground would vanish. */
 .social-cta {
   display: inline-flex;
   align-items: center;
@@ -280,8 +249,6 @@ p {
   background: color-mix(in oklab, var(--brand) 14%, transparent);
 }
 
-/* WhatsApp carries the primary action, so it starts already tinted instead of
-   waiting for a hover a touch device never sends. */
 .social-cta[data-primary] {
   border-color: var(--brand);
   background: color-mix(in oklab, var(--brand) 12%, transparent);

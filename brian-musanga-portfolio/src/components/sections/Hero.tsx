@@ -47,11 +47,6 @@ export function Hero() {
 
       <div className="relative mx-auto flex w-full max-w-5xl flex-1 flex-col px-6">
         <div className="flex flex-1 flex-col items-start justify-center gap-6 pt-8 pb-12 text-left min-[426px]:items-center min-[426px]:text-center lg:py-24">
-          {/* Below lg the portrait is taller than the two-line name, so it sits
-              beside it in flow. From lg the name outgrows it and the pill can
-              go back through the middle. Above 425px the row shrinks to its
-              content so the parent's centering can take hold; at 425px and
-              below it stays full-width and left-aligned. */}
           <div className="relative flex w-full items-center gap-5 sm:gap-7 min-[426px]:w-auto lg:mx-auto lg:block lg:w-auto">
             <div
               aria-hidden="true"
@@ -67,10 +62,6 @@ export function Hero() {
               <span className="block text-accent">Musanga</span>
             </h1>
 
-            {/* order-first puts the pill left of the name without moving the
-                h1 down the DOM. The centering lives on this slot, not on the
-                animated pill, so GSAP's inline transform never has a translate
-                to fight with. */}
             <div className="order-first shrink-0 -translate-y-2 sm:-translate-y-3 lg:pointer-events-none lg:absolute lg:inset-0 lg:z-10 lg:grid lg:translate-x-0 lg:translate-y-0 lg:place-items-center">
               <div
                 ref={portraitRef}

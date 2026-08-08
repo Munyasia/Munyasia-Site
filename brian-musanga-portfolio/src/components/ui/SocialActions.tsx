@@ -5,18 +5,13 @@ import { personal } from "@/lib/data/site-content";
 type Action = {
   href: string;
   label: string;
-  /* Named a fifth and sixth hue past the Four-Color Rule on purpose, as a
-     logo exception alongside the hero video and project screenshots. */
   brand: string;
   primary?: boolean;
 };
 
-/* GitHub's registered hex is #181717, which is invisible against this
-   background. Their own dark-surface guidance is the white mark, so the
-   foreground token is the accurate logo colour here, not a substitution.
-   LinkedIn was pulled from Simple Icons upstream, so it rides as a
-   typographic "in" in LinkedIn blue. Email is nobody's brand and stays
-   floral white. */
+/* GitHub sits on the foreground token, not its real hex. #181717 is invisible
+   on this background, and GitHub's own dark-surface guidance is the white mark
+   anyway. Don't "correct" it back to the brand value. */
 const actions: Action[] = [
   {
     href: personal.whatsapp,

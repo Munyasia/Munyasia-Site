@@ -1,7 +1,6 @@
-/* The mark's geometry, shared by LogoMark and SiteIntro so the two can never
-   drift. A third copy exists as a string in src/app/opengraph-image.tsx —
-   Satori renders a CSS subset, not React SVG, so it cannot consume this.
-   Drawn in the 512 square the app icon uses; consumers pick the viewBox. */
+/* opengraph-image.tsx keeps a third copy of these paths as a raw string.
+   Satori renders a CSS subset rather than React SVG, so it can't import this
+   one. Change the geometry here and you have to change it there too. */
 export function LogoMarkPaths() {
   return (
     <>
@@ -32,6 +31,5 @@ export function LogoMarkPaths() {
   );
 }
 
-/* Stroke bounds of the paths above, tight to the ink. */
 export const LOGO_MARK_VIEWBOX = "154 74 187 364";
 export const LOGO_MARK_BOUNDS = { x: 154, y: 74, width: 187, height: 364 };

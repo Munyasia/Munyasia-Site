@@ -5,9 +5,6 @@ export const alt = `${personal.name}, ${personal.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-/* The mark is duplicated as a raw string rather than imported from LogoMark:
-   Satori renders a CSS subset, not React SVG, so it has to arrive as an image.
-   Keep the paths in sync with src/components/ui/LogoMark.tsx. */
 const markSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="154 74 187 364" width="187" height="364">
   <g fill="none" stroke="#fefaef" stroke-width="52" stroke-linecap="round" stroke-linejoin="round">
     <path d="M180 100L180 412" />

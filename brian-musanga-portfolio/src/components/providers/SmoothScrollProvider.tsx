@@ -35,13 +35,11 @@ export function SmoothScrollProvider({
     gsap.ticker.add(raf);
     gsap.ticker.lagSmoothing(0);
 
-    /* Lenis caches its scroll limit and only recomputes it when its autoResize
-       observer fires. That observer watches documentElement, which the root
-       layout pins to h-full, so its box is always exactly the viewport and the
-       observer never fires no matter how much content grows. The limit then
-       stays at whatever the page measured on mount: navigate from a short page
-       to a tall one and scrolling stops dead at the short page's height.
-       Watching body instead catches route changes and late-loading media. */
+    /* Don't swap this back for Lenis autoResize. That observer watches
+       documentElement, which the layout pins to h-full, so its box never
+       changes and the scroll limit freezes at whatever the page measured on
+       mount. Go from a short route to a tall one and scrolling stops dead at
+       the short route's height. Watching body is what fixes it. */
     let lastHeight = 0;
     const observer = new ResizeObserver(() => {
       const height = document.body.scrollHeight;

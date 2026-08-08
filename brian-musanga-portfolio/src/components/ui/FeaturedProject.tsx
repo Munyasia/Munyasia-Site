@@ -8,8 +8,6 @@ export function FeaturedProject({
 }: {
   project: Project;
   reverse?: boolean;
-  /* The first row sits above the fold and is the page's LCP element, so it
-     opts out of lazy loading. The rest stay lazy. */
   priority?: boolean;
 }) {
   const { title, type, year, description, outcome, stack, image, liveUrl } =

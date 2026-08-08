@@ -23,9 +23,6 @@ export function Footer() {
 
   return (
     <footer className="border-t border-border">
-      {/* The icon row stays left-aligned when stacked, so it clears the fixed
-          menu button (bottom-6 right-6, 64px) horizontally and needs no extra
-          bottom padding to sit above it. */}
       <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-8 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-4">
           <LogoMark

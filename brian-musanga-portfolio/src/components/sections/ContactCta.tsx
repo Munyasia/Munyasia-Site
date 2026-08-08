@@ -4,8 +4,6 @@ import { AnimatedEllipsis } from "@/components/ui/AnimatedEllipsis";
 import { home, personal } from "@/lib/data/site-content";
 
 export function ContactCta({ index = "02" }: { index?: string }) {
-  /* This is the last section on every page that uses it, so the bottom padding
-     is trimmed against the footer's own top border. */
   return (
     <section className="mx-auto w-full max-w-5xl px-6 pt-24 pb-16 sm:pt-32 sm:pb-20">
       <SectionLabel index={index}>Contact</SectionLabel>

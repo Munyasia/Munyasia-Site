@@ -33,11 +33,9 @@ export type SkillGroup = {
 
 export type Pillar = {
   index: string;
-  /* One word for the sticky index and the panel eyebrow. */
   short: string;
   title: string;
   body: string;
-  /* Concrete things shipped under this pillar, pulled from real projects. */
   proof: string[];
 };
 
@@ -74,10 +72,9 @@ export const navLinks = [
   { index: "04", href: "/contact", label: "Contact" },
 ];
 
-/* Transforms are width-capped: uncapped f_auto,q_auto was shipping the full
-   master, which left the background blank until it arrived. Posters are frame
-   0 of the same asset (so_0 + .jpg), so they always match the footage. The
-   site copy runs smaller because it sits under a duotone filter and a scrim. */
+/* Keep the width caps. Without w_ and c_limit Cloudinary hands back the full
+   master and the background sits blank until it lands. Posters are frame 0 of
+   the same asset (so_0 + .jpg) so they can't drift out of sync with it. */
 export const backgroundVideo = {
   hero: "https://res.cloudinary.com/dmvb8o8z2/video/upload/f_auto,q_auto,w_1920,c_limit/v1781510952/bg_c8giyo.mp4",
   heroPoster:
@@ -260,10 +257,6 @@ export const skills: SkillGroup[] = [
       "Java",
     ],
   },
-  /* Security is the differentiator, so it stands on its own rather than
-     sharing a row with Git and Vercel, and every entry names a specific
-     control or discipline. Vague lines like "Cybersecurity Fundamentals"
-     read as a course title to a recruiter scanning for keywords. */
   {
     category: "Security",
     items: [
@@ -308,9 +301,6 @@ export type Job = {
   detail: string;
 };
 
-/* Reverse chronological. TryHackMe sits on the CV under work experience but
-   is training, not a job, so it stays in the background prose instead of
-   padding this list. */
 export const experience: Job[] = [
   {
     period: "Apr 2026",
@@ -342,8 +332,6 @@ export const experience: Job[] = [
   },
 ];
 
-/* Written first person. The rest of the site speaks as Brian, and this is the
-   page where third-person CV voice would read as someone else's summary. */
 export const about = {
   statement:
     "I build software that people actually rely on. Then, I do my absolute best to break it into pieces before anyone else can.",
@@ -381,7 +369,6 @@ export const about = {
 export type ContactRow = {
   label: string;
   value: string;
-  /* Absent means the value is a fact, not somewhere to go. */
   href?: string;
 };
 
@@ -394,17 +381,8 @@ export type Contact = {
   groups: ContactGroup[];
 };
 
-/* Heading ships in sentence case and is uppercased in CSS, so a screen reader
-   and a copy-paste both get "Let's work together" rather than shouting.
-   Split into two lines by hand because the mask reveal animates one element
-   per line, and letting the browser choose the break would desync them.
-   Line two is the shorter of the pair: the layout indents it, so a longer
-   second line would push past the container. Check --text-mega if this
-   copy changes. */
 export const contact: Contact = {
   headingLines: ["Let's work", "together"],
-  /* The one word set in the script face, sitting under the heading in accent
-     gold so the page opens with a hand-written note rather than a form. */
   signature: "Contact",
   subline:
     "Or what's already broken. Either one is a good place to start.",
@@ -486,7 +464,6 @@ export const home: Home = {
       ],
     },
   ],
-  /* No trailing period: ContactCta renders an animated ellipsis in its place. */
   ctaHeading: "Tell me what your business needs",
   ctaEmphasis: "business needs",
   ctaBody:

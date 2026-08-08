@@ -16,8 +16,6 @@ export function AboutStory() {
     () => {
       const mm = gsap.matchMedia();
 
-      /* Below the fold, so start states go through gsap.set rather than CSS:
-         nothing can flash, and the prose stays readable if JS never runs. */
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         const items = gsap.utils.toArray<HTMLElement>("[data-story]");
         gsap.set(items, { y: 20, opacity: 0 });

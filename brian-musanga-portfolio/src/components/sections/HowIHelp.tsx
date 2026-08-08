@@ -18,8 +18,6 @@ export function HowIHelp() {
     () => {
       const panels = gsap.utils.toArray<HTMLElement>("[data-pillar]");
 
-      /* Drives the sticky index on the left. Kept outside matchMedia so the
-         readout still tracks when motion is reduced. */
       panels.forEach((panel, i) => {
         ScrollTrigger.create({
           trigger: panel,
@@ -34,9 +32,6 @@ export function HowIHelp() {
       const mm = gsap.matchMedia();
 
       mm.add("(prefers-reduced-motion: no-preference)", () => {
-        /* Start states go through gsap.set rather than CSS: the section sits
-           below the fold, so there is nothing to flash, and content stays
-           visible if JS never runs. */
         gsap.set(asideRef.current, { y: 20, opacity: 0 });
         gsap.set(panels, { y: 28, opacity: 0, filter: "blur(10px)" });
 

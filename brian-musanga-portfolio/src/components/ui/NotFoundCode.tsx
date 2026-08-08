@@ -7,9 +7,6 @@ import { useRef } from "react";
 
 gsap.registerPlugin(ScrambleTextPlugin, useGSAP);
 
-/* The code settles out of binary noise once, on mount. Text ships as "404" so
-   the page still reads correctly with JS off or motion reduced, and the
-   aria-label holds the real value while the characters are churning. */
 export function NotFoundCode() {
   const ref = useRef<HTMLSpanElement | null>(null);
 

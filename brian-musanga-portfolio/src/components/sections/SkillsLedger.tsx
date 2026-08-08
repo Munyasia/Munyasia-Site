@@ -31,8 +31,6 @@ export function SkillsLedger() {
           },
         });
 
-        /* The rules get ruled onto the page first, left to right, then the
-           entries land on them. A ledger being written, not a list fading in. */
         tl.to(rules, {
           scaleX: 1,
           duration: 0.7,
@@ -69,9 +67,6 @@ export function SkillsLedger() {
 
         <dl className="mt-12">
           {skills.map((group) => (
-            /* dl's content model allows div wrappers holding dt + dd and
-               nothing else, so the animated rule rides inside dt (positioned
-               against this row) rather than sitting beside them. */
             <div
               key={group.category}
               className="relative grid grid-cols-1 gap-2 py-7 sm:grid-cols-12 sm:gap-8"
@@ -86,10 +81,6 @@ export function SkillsLedger() {
                   {group.category}
                 </span>
               </dt>
-              {/* Flex-wrapped, not inline text: the separators carry no
-                  whitespace, so as inline content the whole run was one
-                  unbreakable word and overflowed the viewport on mobile. Each
-                  dot trails its own item so a wrapped line never opens on one. */}
               <dd
                 data-ledger-entry
                 className="flex flex-wrap items-baseline gap-x-2 gap-y-1 font-mono text-sm leading-relaxed text-foreground sm:col-span-9"
@@ -112,9 +103,6 @@ export function SkillsLedger() {
           ))}
         </dl>
 
-        {/* Closes the ledger. Outside the dl, since a bare span inside one is
-            not valid, and it draws in with the rest rather than shipping as a
-            static border. */}
         <div className="relative h-px">
           <span
             data-ledger-rule

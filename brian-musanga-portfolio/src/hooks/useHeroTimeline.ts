@@ -27,8 +27,6 @@ export function useHeroTimeline(refs: HeroRefs) {
     () => {
       const mm = gsap.matchMedia();
 
-      /* Start values live in .hero-pending (globals.css) so they survive SSR.
-         Dropping the class hands the elements over to GSAP's inline styles. */
       const release = () => refs.section.current?.classList.remove("hero-pending");
 
       mm.add("(prefers-reduced-motion: reduce)", () => {
@@ -58,8 +56,6 @@ export function useHeroTimeline(refs: HeroRefs) {
           opacity: 0,
           filter: "blur(14px)",
         });
-        // SplitText copies the h1's opacity onto its line masks, so the
-        // headline itself can be revealed now that the lines hold the state.
         gsap.set(refs.headline.current, { opacity: 1 });
 
         const tl = gsap.timeline({
@@ -137,7 +133,6 @@ export function useHeroTimeline(refs: HeroRefs) {
     { scope: refs.section },
   );
 
-  // Held until the intro overlay has lifted, so the two never play at once.
   useGSAP(
     () => {
       if (introDone) timelineRef.current?.play();

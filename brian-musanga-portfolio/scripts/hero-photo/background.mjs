@@ -7,17 +7,12 @@ const rootDir = path.join(__dirname, "..", "..");
 const rawPath = path.join(rootDir, "hero-pipeline", "raw", "museNew.jpg");
 const outputPath = path.join(rootDir, "public", "hero-bg.jpg");
 
-// Wider/taller than the pill's bust crop: full-bleed background needs
-// headroom and width to survive object-cover across viewport ratios without
-// eating into the face. Source is 2252x4000 portrait.
 const crop = { left: 260, top: 700, width: 1650, height: 2900 };
 const OUTPUT_WIDTH = 1800;
 const OUTPUT_HEIGHT = Math.round(
   (OUTPUT_WIDTH / crop.width) * crop.height
 );
 
-// Radial vignette: darkens the edges so the frame reads as moody/contained
-// rather than a flat crop, echoing the Solt Wagner reference.
 const vignetteSvg = `
 <svg width="${OUTPUT_WIDTH}" height="${OUTPUT_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -29,8 +24,6 @@ const vignetteSvg = `
   <rect width="100%" height="100%" fill="url(#v)"/>
 </svg>`;
 
-// Fade into the site's near-black (#0A0E14) along the bottom and left edge,
-// where headline/copy sit, so text stays legible over the photo.
 const fadeSvg = `
 <svg width="${OUTPUT_WIDTH}" height="${OUTPUT_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
   <defs>
@@ -47,8 +40,6 @@ const fadeSvg = `
   <rect width="100%" height="100%" fill="url(#bottom)"/>
 </svg>`;
 
-// Film grain: random luminance noise, blurred slightly so it reads as grain
-// rather than static, blended on top at low opacity.
 async function makeGrain(width, height) {
   const noise = Buffer.alloc(width * height * 3);
   for (let i = 0; i < noise.length; i++) {
@@ -66,7 +57,7 @@ async function main() {
     .extract(crop)
     .resize(OUTPUT_WIDTH, OUTPUT_HEIGHT)
     .grayscale()
-    .linear(1.28, -(128 * 0.28)) // punch up contrast around midtones
+    .linear(1.28, -(128 * 0.28))
     .toBuffer();
 
   const grain = await makeGrain(OUTPUT_WIDTH, OUTPUT_HEIGHT);

@@ -2,10 +2,6 @@
 
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 
-// Graded footage runs through the site's duotone filter so it can never
-// introduce a fifth hue (see DESIGN.md Four-Color Rule). The hero opts out
-// and plays its footage in full color as a named exception, so it only needs
-// a light scrim to keep the name lockup and CTAs legible.
 const SCRIM = {
   graded:
     "linear-gradient(to bottom, rgba(10,14,20,0.35) 0%, rgba(10,14,20,0.55) 60%, rgba(10,14,20,0.9) 100%)",

@@ -1,8 +1,5 @@
 import { contact } from "@/lib/data/site-content";
 
-/* Deliberately unanimated. The intro above it spends the page's whole motion
-   budget; these are lookup rows someone came here to read, and sliding them in
-   would be decoration with no job. Stays a server component as a result. */
 export function ContactDetails() {
   return (
     <section
@@ -12,9 +9,6 @@ export function ContactDetails() {
       <div className="grid gap-12 sm:grid-cols-2 sm:gap-x-12 lg:grid-cols-12">
         {contact.groups.map((group) => (
           <div key={group.title} className="lg:col-span-4">
-            {/* Body sans, not the display mono: these are quiet column
-                headings, and setting them in Fira Code would have them
-                arguing with the heading above. */}
             <h2 className="font-sans text-2xl font-medium text-foreground">
               {group.title}
             </h2>

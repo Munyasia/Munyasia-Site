@@ -8,8 +8,6 @@ export const metadata: Metadata = {
   description: `Email or WhatsApp me directly. I work from ${personal.location} and I am open to client work and full-time roles.`,
 };
 
-/* No ContactCta here: the other pages point at this one, and repeating the
-   call to action on its own destination would be a loop. */
 export default function Contact() {
   return (
     <>

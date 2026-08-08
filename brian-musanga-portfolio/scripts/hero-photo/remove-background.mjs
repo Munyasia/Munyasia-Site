@@ -3,11 +3,9 @@ import { readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-// Deliberately does not import `sharp` at the top level: this package
-// bundles its own incompatible sharp version (~0.32.4) internally, and
-// loading two different sharp/libvips native builds in one Node process
-// segfaults. Keeping this step in its own process (see prepare-hero-photo.mjs)
-// avoids that entirely.
+// Never import sharp in this file. @imgly bundles its own sharp (~0.32.4) and
+// loading two libvips builds in one Node process segfaults, which is also why
+// prepare-hero-photo.mjs runs each step as a separate process.
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.join(__dirname, "..", "..");

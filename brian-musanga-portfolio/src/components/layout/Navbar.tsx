@@ -15,15 +15,11 @@ export function Navbar() {
             decorative
             className="h-6 w-auto shrink-0 text-foreground transition-colors duration-150 ease-out group-hover:text-accent sm:h-7"
           />
-          {/* Full name wraps past one line on narrow screens, so it forks
-              short below sm rather than truncating mid-name. */}
           <span className="truncate sm:hidden">Brian Munyasia</span>
           <span className="hidden truncate sm:inline">{personal.name}</span>
         </Link>
 
         <div className="flex shrink-0 items-center gap-4 sm:gap-6">
-          {/* Clock sits left of the location so the two read as one unit:
-              the time, then the place it belongs to. */}
           <div className="hidden items-center gap-2 md:flex">
             <NairobiClock />
             <span className="label">{personal.location}</span>

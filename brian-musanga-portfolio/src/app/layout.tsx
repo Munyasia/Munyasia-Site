@@ -41,8 +41,6 @@ const generalSans = localFont({
   ],
 });
 
-/* Loaded site-wide because the variable lives on <html>, but only the contact
-   signature ever paints it. One weight, one word. */
 const allura = Allura({
   variable: "--font-script",
   subsets: ["latin"],
@@ -55,9 +53,6 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
-/* OG tags need absolute URLs. Vercel injects VERCEL_PROJECT_PRODUCTION_URL on
-   every deploy, so previews and production resolve without a hardcoded domain.
-   Set NEXT_PUBLIC_SITE_URL (with protocol) once a custom domain is attached. */
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
@@ -90,9 +85,6 @@ export const viewport: Viewport = {
   themeColor: "#0a0e14",
 };
 
-/* Runs synchronously before the overlay below is parsed, so a repeat visitor
-   never sees a frame of intro before hydration removes it. Same trick as the
-   classic theme-flash guard. */
 const introGuard = `try{if(sessionStorage.getItem(${JSON.stringify(
   INTRO_SEEN_KEY,
 )})||matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.classList.add("intro-seen")}}catch(e){}`;

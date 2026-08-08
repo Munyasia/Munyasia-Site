@@ -20,8 +20,6 @@ export function AboutIntro() {
     () => {
       const mm = gsap.matchMedia();
 
-      /* Start values live in .about-pending (globals.css) so they survive SSR.
-         Dropping the class hands the elements to GSAP's inline styles. */
       const release = () =>
         sectionRef.current?.classList.remove("about-pending");
 
@@ -33,7 +31,6 @@ export function AboutIntro() {
         release();
 
         const fades = gsap.utils.toArray<HTMLElement>("[data-about-fade]");
-        /* Selector strings, not refs: useGSAP scopes them to the section. */
         const plate = "[data-about-plate]";
         const photo = "[data-about-photo]";
 
@@ -46,9 +43,6 @@ export function AboutIntro() {
           defaults: { ease: "power3.out" },
         });
 
-        /* The plate wipes open top-down while the photo inside settles out of
-           an overscale. Deliberately a different axis from the hero portrait's
-           rounded-inset reveal, so the two pages don't repeat one gesture. */
         tl.to(plate, {
           clipPath: "inset(0 0 0% 0)",
           duration: 1,
@@ -73,7 +67,6 @@ export function AboutIntro() {
     { scope: sectionRef },
   );
 
-  // Held until the intro overlay lifts, so the two never play at once.
   useGSAP(
     () => {
       if (introDone) timelineRef.current?.play();
@@ -113,11 +106,6 @@ export function AboutIntro() {
         </div>
 
         <div className="mt-14 lg:col-span-4 lg:col-start-9 lg:mt-0">
-          {/* Sharp corners by design: DESIGN.md reserves the fully-rounded
-              shape for the hero portrait, so the same face gets a structural
-              frame here rather than a second emblem. Ungraded on purpose, like
-              the hero's video layer: this is the one place a visitor sees
-              Brian as he actually looks. */}
           <div
             data-about-plate
             className="relative aspect-[3/4] w-full overflow-hidden border border-border"

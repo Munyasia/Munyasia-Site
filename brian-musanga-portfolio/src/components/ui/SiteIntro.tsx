@@ -21,8 +21,6 @@ export function SiteIntro() {
 
   useGSAP(
     () => {
-      /* Already hidden by the pre-paint script (repeat visit, or reduced
-         motion). IntroProvider has flipped introDone; nothing to play. */
       if (document.documentElement.classList.contains("intro-seen")) return;
 
       const tl = gsap.timeline({ onComplete: markIntroDone });
@@ -51,8 +49,6 @@ export function SiteIntro() {
     >
       <svg viewBox={LOGO_MARK_VIEWBOX} className="h-40 w-auto sm:h-48">
         <defs>
-          {/* Rises from the baseline to the cap, so the mark reads as a
-              vessel filling rather than a shape fading in. */}
           <clipPath id="intro-fill">
             <rect
               ref={fillRef}

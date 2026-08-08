@@ -19,8 +19,6 @@ export function ContactIntro() {
     () => {
       const mm = gsap.matchMedia();
 
-      /* Start values live in .contact-pending (globals.css) so they survive
-         SSR. Dropping the class hands the elements to GSAP's inline styles. */
       const release = () =>
         sectionRef.current?.classList.remove("contact-pending");
 
@@ -31,7 +29,6 @@ export function ContactIntro() {
       mm.add("(prefers-reduced-motion: no-preference)", () => {
         release();
 
-        /* Selector strings, not refs: useGSAP scopes them to the section. */
         const eyebrow = "[data-contact-eyebrow]";
         const lines = "[data-contact-line]";
         const sign = "[data-contact-sign]";
@@ -46,11 +43,6 @@ export function ContactIntro() {
           defaults: { ease: "power3.out" },
         });
 
-        /* Each heading line rides up out of its own overflow-hidden mask, a
-           third gesture on top of the hero's rounded inset and the about
-           page's top-down plate, so no two pages open the same way. The
-           signature then wipes left to right at a slower, evener rate, which
-           is what sells it as being written rather than faded in. */
         tl.to(eyebrow, { opacity: 1, duration: 0.5 })
           .to(
             lines,
@@ -84,7 +76,6 @@ export function ContactIntro() {
     { scope: sectionRef },
   );
 
-  // Held until the intro overlay lifts, so the two never play at once.
   useGSAP(
     () => {
       if (introDone) timelineRef.current?.play();
@@ -108,10 +99,6 @@ export function ContactIntro() {
           className="mt-10 font-display text-mega uppercase text-foreground sm:mt-16"
         >
           {contact.headingLines.map((line, i) => (
-            /* --text-mega runs a 0.95 line-height, so ink sits outside the
-               line box the mask crops to. The padding gives the mask that
-               room and the matching negative margin takes the space back, so
-               nothing is shaved and the lines keep their 0.95 spacing. */
             <span
               key={line}
               className="block -mb-[0.15em] overflow-hidden"
@@ -124,9 +111,6 @@ export function ContactIntro() {
           ))}
         </h1>
 
-        {/* Pulled up into the heading's baseline gap so the two overlap the way
-            a signature sits under a written line. The negative margin is in em
-            of the script size, so it tracks the clamp at every breakpoint. */}
         <p className="-mt-[0.15em] pl-[30%] text-[clamp(4rem,15vw,11rem)] leading-[0.85]">
           <span
             data-contact-sign
