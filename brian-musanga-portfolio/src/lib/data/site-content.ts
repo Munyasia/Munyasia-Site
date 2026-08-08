@@ -479,7 +479,7 @@ export const home: Home = {
     "I help businesses launch secure web apps and AI tools that actually get customers.",
   ],
   heroEmphasis: "get customers",
-  heroSubline: "Let's take your product from an idea to shipped code.",
+  heroSubline: "Let's take your product from an idea to open for business.",
   scrollHint: "Scroll",
   pillarsHeading: "What I get hired to build",
   pillarsBody:
