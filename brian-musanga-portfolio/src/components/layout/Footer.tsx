@@ -1,6 +1,7 @@
 import { EnvelopeSimple } from "@phosphor-icons/react/dist/ssr";
 import { SiGithub } from "@icons-pack/react-simple-icons";
-import { personal } from "@/lib/data/site-content";
+import Link from "next/link";
+import { personal, studio } from "@/lib/data/site-content";
 import { LogoMark } from "@/components/ui/LogoMark";
 
 const iconLinks = [
@@ -33,6 +34,12 @@ export function Footer() {
             <li>{personal.location}</li>
             <li>{personal.email}</li>
             <li>&copy; {year} {personal.name}</li>
+            <li>
+              Designed by{" "}
+              <Link href="/about" className="link-invert text-foreground">
+                {studio.name}
+              </Link>
+            </li>
           </ul>
         </div>
 
