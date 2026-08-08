@@ -4,10 +4,19 @@ import { FeaturedProject } from "@/components/ui/FeaturedProject";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import { ContactCta } from "@/components/sections/ContactCta";
 import { projects, work } from "@/lib/data/site-content";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema, workCollectionSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Portfolio",
   description: work.intro,
+  alternates: { canonical: "/work" },
+  openGraph: {
+    type: "website",
+    title: "Portfolio",
+    description: work.intro,
+    url: "/work",
+  },
 };
 
 export default function Work() {
@@ -17,6 +26,9 @@ export default function Work() {
 
   return (
     <>
+      <JsonLd data={workCollectionSchema} />
+      <JsonLd data={breadcrumbSchema("Portfolio", "/work")} />
+
       <header className="mx-auto w-full max-w-5xl px-6 pt-16 pb-4 sm:pt-24">
         <SectionLabel index="Portfolio">{total} projects</SectionLabel>
 

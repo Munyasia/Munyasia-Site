@@ -413,6 +413,51 @@ export const contact: Contact = {
   ],
 };
 
+export type FaqItem = { question: string; answer: string };
+
+export const faq: FaqItem[] = [
+  {
+    question: "What do you actually do?",
+    answer:
+      "I build websites and web apps for businesses. The kind customers buy from or log into. You tell me what your business needs to do online, I build it and put it live.",
+  },
+  {
+    question: "I know I need something online, but not exactly what. Can you still help?",
+    answer:
+      "Yes, and that is most of my work. Tell me what is slowing the business down, or what you wish customers could do on their own. I will tell you what is worth building first and what can wait, so you are not paying for things you do not need yet.",
+  },
+  {
+    question: "Can customers pay on the site?",
+    answer:
+      "Yes. I set up M-Pesa and card payments so the money reaches your account, and I build the side you use to see orders, mark them as sent and keep track of what is in stock.",
+  },
+  {
+    question: "Will people find my business on Google?",
+    answer:
+      "Yes, and it is included in the build. I set the site up so Google can read every page properly and list it in search results. Nobody has to come back later and bolt it on.",
+  },
+  {
+    question: "Is it safe?",
+    answer:
+      "I am a trained cybersecurity analyst, so I build assuming someone will try to get in. Logins, payments and customer records are protected while the site is being built, rather than patched after something goes wrong. If you handle money or personal details, this is the part that matters most.",
+  },
+  {
+    question: "Do I need to understand the technical side?",
+    answer:
+      "No. I explain things in plain language and tell you when a decision is genuinely yours to make. You will not get a report full of words you have to look up.",
+  },
+  {
+    question: "Where are you based, and does it matter where I am?",
+    answer:
+      "I am in Nairobi and I work Monday to Saturday, 9:00 to 18:00. The work is remote, so your location does not change much.",
+  },
+  {
+    question: "How do we start?",
+    answer:
+      "Send me a WhatsApp message or an email and say what you need. I will tell you whether I am the right person for it, and what I would do first.",
+  },
+];
+
 export const work = {
   heading: "Portfolio",
   intro:

@@ -12,6 +12,8 @@ import { Navbar } from "@/components/layout/Navbar";
 import { MenuFab } from "@/components/layout/MenuFab";
 import { Footer } from "@/components/layout/Footer";
 import { backgroundVideo, personal } from "@/lib/data/site-content";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { personSchema, siteUrl, websiteSchema } from "@/lib/seo";
 import "./globals.css";
 
 const firaCode = Fira_Code({
@@ -53,31 +55,49 @@ const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500"],
 });
 
-const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : "http://localhost:3000");
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: personal.name,
+    default: `${personal.name} · ${personal.role}`,
     template: `%s · ${personal.name}`,
   },
   description: personal.headline,
+  alternates: {
+    canonical: "/",
+  },
+  authors: [{ name: personal.name, url: siteUrl }],
+  creator: personal.name,
+  keywords: [
+    personal.name,
+    "full-stack developer Nairobi",
+    "cybersecurity analyst Kenya",
+    "Next.js developer Kenya",
+    "AI integration",
+    "web developer Nairobi",
+  ],
   openGraph: {
-    type: "website",
+    type: "profile",
     siteName: personal.name,
-    title: personal.name,
+    title: `${personal.name} · ${personal.role}`,
     description: personal.headline,
     url: "/",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: personal.name,
+    title: `${personal.name} · ${personal.role}`,
     description: personal.headline,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };
 
@@ -101,6 +121,8 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <script dangerouslySetInnerHTML={{ __html: introGuard }} />
+        <JsonLd data={personSchema} />
+        <JsonLd data={websiteSchema} />
         <svg width="0" height="0" aria-hidden="true" className="absolute">
           <defs>
             <filter id="hero-duotone" colorInterpolationFilters="sRGB">
